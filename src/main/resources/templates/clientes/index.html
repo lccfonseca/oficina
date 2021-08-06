@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">      
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div th:switch="${clientes}">
+            <div class="card-header">
+                Clientes
+            </div>
+            <br/>
+            <h4 th:case="null">Nenhum registro encontrato!</h4>
+            <div th:case="*">
+                <table id="myTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Mãe</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cliente : ${clientes}">
+                            <td th:text="${cliente.nome}"></td>
+                            <td th:text="${cliente.email}"></td>
+                            <td th:text="${cliente.mae}"></td>
+                            <td><a th:href="@{/clientes/edit/{id}(id=${cliente.id})}">Edit</a></td>
+                            <td><a th:href="@{/clientes/delete/{id}(id=${cliente.id})}"
+                                   id="btnDelete"
+                                   class="delete"
+                                   data-confirm="Confirma a exclusão?">
+                                    Delete</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Mãe</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <a href="/clientes/add" class="btn btn-primary">Novo</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+1 - Quais os nomes clientes do estado do RS?
+
+2 - Quantos são os clientes do estado do RJ?
+
+3 - Quais as cidades e nomes dos cliente do MA?
+
+4 - Quais os tipos dos veículos cadastrados na base que são da Honda?
+
+5 - Quantos veículos existem catastrados na base agrupados por marca? Ou seja, quantos veículos de cada marca?
+
+6 - Quantos veículos de cada tipo?
+
+7 - Quantos veiculos cada cliente tem? (considerar apenas os que tem mais de 1)
