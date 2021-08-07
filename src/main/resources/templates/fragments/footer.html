@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="footer">            
+            <!-- REQUIRED SCRIPTS -->
+            <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+            <script src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+            <script src="/webjars/datatables/1.10.25/js/jquery.dataTables.min.js"></script>
+            <script>
+                var deleteLinks = document.querySelectorAll('.delete');
+
+                for (var i = 0; i < deleteLinks.length; i++) {
+                    deleteLinks[i].addEventListener('click', function (event) {
+                        event.preventDefault();
+
+                        var choice = confirm(this.getAttribute('data-confirm'));
+
+                        if (choice) {
+                            window.location.href = this.getAttribute('href');
+                        }
+                    });
+                }
+
+                //Menu Toggle Script
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                });
+            </script>
+        </div>
+    </body>
+</html>

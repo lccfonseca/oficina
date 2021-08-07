@@ -4,11 +4,12 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{fragments/layout-simples.html}">
     <head>
-        <title>Oficina da Uema</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Página inicial da Oficina</div>
+        <section layout:fragment="content">
+            <form action="#" th:action="@{/clientes/create}" th:object="${cliente}" method="post">
+                <div th:replace="clientes/form :: form"/>
+            </form>
+        </section>
     </body>
 </html>

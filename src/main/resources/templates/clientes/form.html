@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div th:fragment="form">
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" th:field="*{cpf}" id="cpf" placeholder="CPF"/>
+                <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+            </div>
+            <div class="form-group">    
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Nome"/>
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" th:field="*{endereco}" id="endereco" placeholder="Endereco"/>
+                <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="cidades_id">Cidade</label>
+                <input type="text" class="form-control" th:field="*{cidades_id}" id="telefone" placeholder="Cidade"/>
+                <span th:if="${#fields.hasErrors('cidades_id')}" th:errors="*{cidades_id}"></span>
+            </div> 
+            
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" th:field="*{telefone}" id="telefone" placeholder="Telefone"/>
+                <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="E-Mail"/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="dt_nasc">Dat. Nascimento</label>
+                <input type="text" class="form-control" th:field="*{dt_nasc}" id="dt_nasc" placeholder="Dat. Nascimento"/>
+                <span th:if="${#fields.hasErrors('dt_nasc')}" th:errors="*{dt_nasc}"></span>
+            </div>    
+            <div class="form-group">
+                <label for="pai">Nome do Pai</label>
+                <input type="text" class="form-control" th:field="*{pai}" id="pai" placeholder="Nome do Pai"/>
+                <span th:if="${#fields.hasErrors('pai')}" th:errors="*{pai}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="mae">Nome da Mãe</label>
+                <input type="text" class="form-control" th:field="*{mae}" id="mae" placeholder="Nome da Mãe"/>
+                <span th:if="${#fields.hasErrors('mae')}" th:errors="*{mae}"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar">     
+            </div>
+        </div>
+    </body>
+</html>
