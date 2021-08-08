@@ -11,5 +11,25 @@
                 <div th:replace="clientes/form :: form"/>
             </form>
         </section>
+        <th:block layout:fragment="script">
+            <script>
+                function sendAjaxRequest() {
+                    var uf = $("#uf").val();
+                    $.get( "/cidades/" + uf, function( data ) {
+                        $("#cidades_id").empty();
+                        data.forEach(function(item, i) {
+                            var option = "<option value = " + item.id + ">" + item.nome +  "</option>";
+                            $("#cidades_id").append(option);
+                        });
+                    });
+                };
+
+                $(document).ready(function() {
+                    $("#uf").change(function() {
+                        sendAjaxRequest();
+                    });
+                });
+            </script>
+        </th:block>
     </body>
 </html>

@@ -24,8 +24,25 @@
             </div>
             
             <div class="form-group">
+                <label for="uf">Estado</label>
+                <select class="form-control selectpicker" id="uf">
+                    <option value="">Escolha um estado</option>
+                    <option th:each="uf : ${ufs}"
+                        th:value="${uf}"
+                        th:text="${uf}"
+                        th:selected="${uf} == ${cidade.uf}">
+                    </option>
+                </select>
                 <label for="cidades_id">Cidade</label>
-                <input type="text" class="form-control" th:field="*{cidades_id}" id="telefone" placeholder="Cidade"/>
+                <select class="form-control selectpicker" th:field="*{cidades_id}" id="cidades_id">
+                    <option value="">Escolha uma cidade</option>                   
+                </select>
+                <span th:if="${#fields.hasErrors('cidades_id')}" th:errors="*{cidades_id}"></span>
+            </div> 
+            
+            <div class="form-group">
+                <label for="cidades_id">Cidade</label>
+                <input type="text" class="form-control" th:field="*{cidades_id}" id="cidades_id" placeholder="Cidade"/>
                 <span th:if="${#fields.hasErrors('cidades_id')}" th:errors="*{cidades_id}"></span>
             </div> 
             

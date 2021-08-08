@@ -6,6 +6,7 @@
 package br.uema.engcomp.oficina.controller;
 
 import br.uema.engcomp.oficina.model.Cliente;
+import br.uema.engcomp.oficina.repository.CidadeRepository;
 import br.uema.engcomp.oficina.repository.ClienteRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class ClienteController {
     
     @Autowired
     private ClienteRepository repository;
+    @Autowired
+    private CidadeRepository cidadeRepository;
     
     @GetMapping("/")
     public String index(Model model) {
@@ -38,6 +41,8 @@ public class ClienteController {
     public String add(Cliente cliente, Model model) {
         cliente = new Cliente();
         model.addAttribute("cliente", cliente);
+        model.addAttribute("cidade", cidadeRepository.getById((Long.valueOf(1))));
+        model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/add";
     }
     
@@ -57,6 +62,8 @@ public class ClienteController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
 
         model.addAttribute("cliente", cliente);
+        model.addAttribute("cidade", cidadeRepository.findById(cliente.getCidades_id()).get());
+        model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/update";
     }
     
