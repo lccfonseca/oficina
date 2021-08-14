@@ -15,13 +15,17 @@
             </form>
         </section>
         <th:block layout:fragment="script">
-            <script>
+            <script th:inline="javascript">
+                var cidades_id = [[${cliente.cidades_id}]];
                 function sendAjaxRequest() {
                     var uf = $("#uf").val();
                     $.get( "/cidades/" + uf, function( data ) {
                         $("#cidades_id").empty();
                         data.forEach(function(item, i) {
-                            var option = "<option value = " + item.id + ">" + item.nome +  "</option>";
+                            var selected;
+                            if (cidades_id === item.id)
+                                selected = "selected";
+                            var option = "<option " + selected + " value = " + item.id + ">" + item.nome +  "</option>";
                             $("#cidades_id").append(option);
                         });
                     });
@@ -32,6 +36,10 @@
                         sendAjaxRequest();
                     });
                 });
+                
+                window.onload=function(){
+                    sendAjaxRequest();
+                };
             </script>
         </th:block>
     </body>

@@ -41,7 +41,7 @@ public class ClienteController {
     public String add(Cliente cliente, Model model) {
         cliente = new Cliente();
         model.addAttribute("cliente", cliente);
-        model.addAttribute("cidade", cidadeRepository.getById((Long.valueOf(1))));
+        model.addAttribute("estado", "");
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/add";
     }
@@ -62,7 +62,7 @@ public class ClienteController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
 
         model.addAttribute("cliente", cliente);
-        model.addAttribute("cidade", cidadeRepository.findById(cliente.getCidades_id()).get());
+        model.addAttribute("estado", cidadeRepository.findById(cliente.getCidades_id()).get().getUf());
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/update";
     }

@@ -35,11 +35,15 @@ public class Cliente implements Serializable {
     @NotBlank(message = "O nome é obrigatório!")
     private String nome;
     private String endereco;
+    @NotBlank(message = "A cidade é obrigatória!")
     private Long cidades_id;
     private String telefone;
     private String email;
+    @NotBlank(message = "A data de nascimento é obrigatória!")
     private String dt_nasc;
+    @NotBlank(message = "O CPF é obrigatório!")
     private String cpf;
     private String pai;
+    @NotBlank(message = "O nome da mãe é obrigatório!")
     private String mae;
 }
