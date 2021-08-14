@@ -79,4 +79,12 @@ public class ClienteController {
         return "redirect:/clientes/";
     }
     
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id, Model model) {
+        Cliente cliente = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
+        repository.delete(cliente);
+        return "redirect:/users/";
+    }
+    
 }
