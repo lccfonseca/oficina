@@ -25,18 +25,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping({"/clientes"})
 public class ClienteController {
-    
+
     @Autowired
     private ClienteRepository repository;
     @Autowired
     private CidadeRepository cidadeRepository;
-    
+
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("clientes", repository.findAll());
         return "/clientes/index";
     }
-    
+
     @GetMapping("/add")
     public String add(Cliente cliente, Model model) {
         cliente = new Cliente();
@@ -45,7 +45,7 @@ public class ClienteController {
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/add";
     }
-    
+
     @PostMapping("/create")
     public String create(@Valid Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -55,7 +55,7 @@ public class ClienteController {
         repository.save(cliente);
         return "redirect:/clientes/";
     }
-    
+
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") long id, Model model) {
         Cliente cliente = repository.findById(id)
@@ -66,7 +66,7 @@ public class ClienteController {
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
         return "/clientes/update";
     }
-    
+
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") long id, @Valid Cliente cliente,
             BindingResult result, Model model) {
@@ -78,13 +78,13 @@ public class ClienteController {
         repository.save(cliente);
         return "redirect:/clientes/";
     }
-    
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id, Model model) {
         Cliente cliente = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
         repository.delete(cliente);
-        return "redirect:/users/";
+        return "redirect:/clientes/";
     }
-    
+
 }
