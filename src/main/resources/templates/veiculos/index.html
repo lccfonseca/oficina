@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout-simples.html}">      
+<html>
+    <head>
+    </head>
+    <body>
+        <section layout:fragment="content">
+        <div th:switch="${veiculos}">
+            <div class="card-header">
+                Veiculos
+            </div>
+            <br/>
+            <h4 th:case="null">Nenhum registro encontrato!</h4>
+            <div th:case="*">
+                <table id="myTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Ano</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="veiculo : ${veiculos}">
+                            <td th:text="${veiculo.modelo}"></td>
+                            <td th:text="${veiculo.placa}"></td>
+                            <td th:text="${veiculo.ano}"></td>
+                            <td><a th:href="@{/veiculos/edit/{id}(id=${veiculo.id})}">Edit</a></td>
+                            <td><a th:href="@{/veiculos/delete/{id}(id=${veiculo.id})}"
+                                   id="btnDelete"
+                                   class="delete"
+                                   data-confirm="Confirma a exclusão?">
+                                    Delete</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Ano</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <a href="/veiculos/add" class="btn btn-primary">Novo</a>
+        </div>
+        </section>
+    </body>
+</html>

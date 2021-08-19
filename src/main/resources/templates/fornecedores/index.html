@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout-simples.html}">      
+<html>
+    <head>
+    </head>
+    <body>
+        <section layout:fragment="content">
+        <div th:switch="${fornecedores}">
+            <div class="card-header">
+                Fornecedores
+            </div>
+            <br/>
+            <h4 th:case="null">Nenhum registro encontrato!</h4>
+            <div th:case="*">
+                <table id="myTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="fornecedor : ${fornecedores}">
+                            <td th:text="${fornecedor.nome}"></td>
+                            <td th:text="${fornecedor.email}"></td>
+                            <td><a th:href="@{/fornecedores/edit/{id}(id=${fornecedor.id})}">Edit</a></td>
+                            <td><a th:href="@{/fornecedores/delete/{id}(id=${fornecedor.id})}"
+                                   id="btnDelete"
+                                   class="delete"
+                                   data-confirm="Confirma a exclusão?">
+                                    Delete</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <a href="/fornecedores/add" class="btn btn-primary">Novo</a>
+        </div>
+        </section>
+    </body>
+</html>

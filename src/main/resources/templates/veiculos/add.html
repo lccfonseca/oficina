@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout-simples.html}">
+    <head>
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <form action="#" th:action="@{/veiculos/create}" th:object="${veiculo}" method="post">
+                <div th:replace="veiculos/form :: form"/>
+            </form>
+        </section>
+    </body>
+</html>

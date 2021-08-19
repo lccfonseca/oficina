@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div th:fragment="form">
+            <div class="form-group">
+                <label for="clientes_id">ID do Cliente</label>
+                <input type="text" class="form-control" th:field="*{clientes_id}" id="clientes_id" placeholder="ID do Cliente"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('clientes_id')}" th:errors="*{clientes_id}"></span>
+            </div>
+            <div class="form-group">    
+                <label for="ano">Ano</label>
+                <input type="text" class="form-control" th:field="*{ano}" id="ano" placeholder="Ano"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></span>
+            </div>
+            <div class="form-group">
+                <label for="marcas_id">ID da Marca</label>
+                <input type="text" class="form-control" th:field="*{marcas_id}" id="marcas_id" placeholder="ID da Marca"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('marcas_id')}" th:errors="*{marcas_id}"></span>
+            </div>          
+            <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input type="text" class="form-control" th:field="*{modelo}" id="modelo" placeholder="Modelo"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></span>
+            </div>    
+            <div class="form-group">
+                <label for="cor">Cor</label>
+                <input type="text" class="form-control" th:field="*{cor}" id="cor" placeholder="Cor"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('cor')}" th:errors="*{cor}"></span>
+            </div>  
+            <div class="form-group">
+                <label for="placa">Placa</label>
+                <input type="text" class="form-control" th:field="*{placa}" id="placa" placeholder="Placa"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="km">Quilometragem</label>
+                <input type="text" class="form-control" th:field="*{km}" id="km" placeholder="Quilometragem"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('km')}" th:errors="*{km}"></span>
+            </div>
+            <div class="form-group">
+                <label for="tipos_veiculos_id">ID do tipo de veiculo</label>
+                <input type="text" class="form-control" th:field="*{tipos_veiculos_id}" id="tipos_veiculos_id" placeholder="ID do tipo de veiculo"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('tipos_veiculos_id')}" th:errors="*{tipos_veiculos_id}"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Salvar">     
+            </div>
+        </div>
+    </body>
+</html>
