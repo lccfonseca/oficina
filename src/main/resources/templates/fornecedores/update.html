@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout-simples.html}">
+    <head>
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <form action="#" 
+                  th:action="@{/fornecedores/update/{id}(id=${fornecedor.id})}" 
+                  th:object="${fornecedor}" 
+                  method="post">
+                <div th:replace="fornecedores/form :: form"/>
+            </form>
+        </section>
+        <th:block layout:fragment="script">
+            <script th:inline="javascript">
+                var cidades_id = [[${fornecedor.cidades_id}]];
+                function sendAjaxRequest() {
+                    var uf = $("#uf").val();
+                    $.get( "/cidades/" + uf, function( data ) {
+                        $("#cidades_id").empty();
+                        data.forEach(function(item, i) {
+                            var selected;
+                            if (cidades_id === item.id)
+                                selected = "selected";
+                            var option = "<option " + selected + " value = " + item.id + ">" + item.nome +  "</option>";
+                            $("#cidades_id").append(option);
+                        });
+                    });
+                };
+
+                $(document).ready(function() {
+                    $("#uf").change(function() {
+                        sendAjaxRequest();
+                    });
+                });
+                
+                window.onload=function(){
+                    sendAjaxRequest();
+                };
+            </script>
+        </th:block>
+    </body>
+</html>

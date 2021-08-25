@@ -51,4 +51,6 @@ and open the template in the editor.
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }
+}.form-group {
+
 }

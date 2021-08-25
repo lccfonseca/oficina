@@ -5,9 +5,9 @@
  */
 package br.uema.engcomp.oficina.controller;
 
-import br.uema.engcomp.oficina.model.Cliente;
+import br.uema.engcomp.oficina.model.Fornecedor;
+import br.uema.engcomp.oficina.repository.FornecedorRepository;
 import br.uema.engcomp.oficina.repository.CidadeRepository;
-import br.uema.engcomp.oficina.repository.ClienteRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,71 +20,72 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author lccf
+ * @author Joilson
  */
-@Controller
-@RequestMapping({"/clientes"})
-public class ClienteController {
 
+@Controller
+@RequestMapping({"/fornecedores"})
+public class FornecedorController {
+    
     @Autowired
-    private ClienteRepository repository;
+    private FornecedorRepository repository;
     @Autowired
     private CidadeRepository cidadeRepository;
-
+    
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("clientes", repository.findAll());
-        return "/clientes/index";
+        model.addAttribute("fornecedores", repository.findAll());
+        return "/fornecedores/index";
     }
-
+    
     @GetMapping("/add")
-    public String add(Cliente cliente, Model model) {
-        cliente = new Cliente();
-        model.addAttribute("cliente", cliente);
+    public String add(Fornecedor fornecedor, Model model) {
+        fornecedor = new Fornecedor();
+        model.addAttribute("fornecedor", fornecedor);
         model.addAttribute("estado", "");
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
-        return "/clientes/add";
+        return "/fornecedores/add";
     }
-
+    
     @PostMapping("/create")
-    public String create(@Valid Cliente cliente, BindingResult result, Model model) {
+    public String create(@Valid Fornecedor fornecedor, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "/clientes/add";
+            return "/fornecedores/add";
         }
 
-        repository.save(cliente);
-        return "redirect:/clientes/";
+        repository.save(fornecedor);
+        return "redirect:/fornecedores/";
     }
-
+    
+    
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") long id, Model model) {
-        Cliente cliente = repository.findById(id)
+        Fornecedor fornecedor = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
 
-        model.addAttribute("cliente", cliente);
-        model.addAttribute("estado", cidadeRepository.findById(cliente.getCidades_id()).get().getUf());
+        model.addAttribute("fornecedor", fornecedor);
+        model.addAttribute("estado", cidadeRepository.findById(fornecedor.getCidades_id()).get().getUf());
         model.addAttribute("ufs", cidadeRepository.findDistinctUf());
-        return "/clientes/update";
+        return "/fornecedores/update";
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") long id, @Valid Cliente cliente,
+    public String update(@PathVariable("id") long id, @Valid Fornecedor fornecedor,
             BindingResult result, Model model) {
         if (result.hasErrors()) {
-            cliente.setId(id);
-            return "/clientes/update";
+            fornecedor.setId(id);
+            return "/fornecedores/update";
         }
 
-        repository.save(cliente);
-        return "redirect:/clientes/";
+        repository.save(fornecedor);
+        return "redirect:/fornecedores/";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id, Model model) {
-        Cliente cliente = repository.findById(id)
+        Fornecedor fornecedor = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id:" + id));
-        repository.delete(cliente);
-        return "redirect:/clientes/";
+        repository.delete(fornecedor);
+        return "redirect:/fornecedores/";
     }
-
 }
