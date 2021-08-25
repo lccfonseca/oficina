@@ -35,6 +35,7 @@ public class Cliente implements Serializable {
     @NotBlank(message = "O nome é obrigatório!")
     private String nome;
     private String endereco;
+    //@NotBlank(message = "A cidade é obrigatória!")
     private Long cidades_id;
     private String telefone;
     private String email;
