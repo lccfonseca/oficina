@@ -27,7 +27,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "veiculos")
 public class Veiculo implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -37,7 +37,7 @@ public class Veiculo implements Serializable {
     @NotBlank(message = "O ano é obrigatório!")
     private String ano;
     @NotBlank(message = "A marca é obrigatória!")
-    private Long marca;
+    private Long marcas_id;
     @NotBlank(message = "O modelo é obrigatório!")
     private String modelo;
     private String cor;
@@ -46,5 +46,5 @@ public class Veiculo implements Serializable {
     private Long km;
     @NotBlank(message = "O id do tipo de veiculo é obrigatório!")
     private Long tipos_veiculos_id;
-    
+
 }
