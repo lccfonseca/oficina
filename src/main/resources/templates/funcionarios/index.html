@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout-simples.html}">      
+<html>
+    <head>
+    </head>
+    <body>
+        <section layout:fragment="content">
+        <div th:switch="${funcionarios}">
+            <div class="card-header">
+                Funcionarios
+            </div>
+            <br/>
+            <h4 th:case="null">Nenhum registro encontrato!</h4>
+            <div th:case="*">
+                <table id="myTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="funcionario : ${funcionarios}">
+                            <td th:text="${funcionario.nome}"></td>
+                            <td th:text="${funcionario.email}"></td>
+                            <td><a th:href="@{/funcionarios/edit/{id}(id=${funcionario.id})}">Edit</a></td>
+                            <td><a th:href="@{/funcionarios/delete/{id}(id=${funcionario.id})}"
+                                   id="btnDelete"
+                                   class="delete"
+                                   data-confirm="Confirma a exclusão?">
+                                    Delete</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-Mail</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <a href="/funcionarios/add" class="btn btn-primary">Novo</a>
+        </div>
+        </section>
+    </body>
+</html>

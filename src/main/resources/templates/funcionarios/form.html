@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div th:fragment="form">
+            
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" th:field="*{cpf}" id="cpf" placeholder="CPF"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+            </div>
+            <div class="form-group">    
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Nome"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" th:field="*{endereco}" id="endereco" placeholder="Endereco"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
+            </div>
+            <div class="form-group">
+                <label for="uf">Estado</label>
+                <select class="form-control selectpicker" id="uf">
+                    <option value="">Escolha um estado</option>
+                    <option th:each="uf : ${ufs}"
+                        th:value="${uf}"
+                        th:text="${uf}"
+                        th:selected="${uf} == ${estado}">
+                    </option>
+                </select>
+                <label for="cidades_id">Cidade</label>
+                <select class="form-control selectpicker" th:field="*{cidades_id}" id="cidades_id">
+                    <option value="">Escolha uma cidade</option>                 
+                </select>
+                <span class="text-danger" th:if="${#fields.hasErrors('cidades_id')}" th:errors="*{cidades_id}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" th:field="*{telefone}" id="telefone" placeholder="Telefone"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="E-Mail"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="dt_nasc">Dat. Nascimento</label>
+                <input type="text" class="form-control" th:field="*{dt_nasc}" id="dt_nasc" placeholder="Dat. Nascimento"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('dt_nasc')}" th:errors="*{dt_nasc}"></span>
+            </div>    
+            <div class="form-group">
+                <label for="pai">Especialidade</label>
+                <input type="text" class="form-control" th:field="*{especialidade_id}" id="especialidade_id" placeholder="Especialidade"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('especialidade_id')}" th:errors="*{especialidade_id}"></span>
+            </div>            
+            <div class="form-group">
+                <label for="mae">Salário</label>
+                <input type="float" class="form-control" th:field="*{salario}" id="salario" placeholder="Salario"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></span>
+            </div>
+            <div class="form-group">
+                <label for="mae">Comissãao</label>
+                <input type="float" class="form-control" th:field="*{comissao}" id="comissao" placeholder="Comissao"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('comissao')}" th:errors="*{comissao}"></span>
+            </div>
+            
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar">     
+            </div>
+        </div>
+    </body>
+</html>
